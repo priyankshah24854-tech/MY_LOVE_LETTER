@@ -1,106 +1,26 @@
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Special Letter For You ❤️</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-    body {
-      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      text-align: center;
-      max-width: 350px;
-      width: 90%;
-    }
-    h1 {
-      color: #e91e63;
-      font-size: 24px;
-      margin-bottom: 15px;
-    }
-    p {
-      color: #333;
-      font-size: 16px;
-      margin-bottom: 25px;
-      line-height: 1.5;
-    }
-    .btn-container {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      position: relative;
-    }
-    button {
-      padding: 12px 25px;
-      font-size: 16px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-    #yesBtn {
-      background-color: #ff4081;
-      color: white;
-      font-weight: bold;
-    }
-    #noBtn {
-      background-color: #eee;
-      color: #333;
-      position: absolute;
-    }
-  </style>
-</head>
-<body>
+const noBtn = document.getElementById('noBtn');
 
-  <div class="card" id="mainCard">
-    <h1>Hey! ❤️</h1>
-    <p>Kya tum mere saath ek special date par chaloge?</p>
-    <div class="btn-container">
-      <button id="yesBtn">Haan! 🥰</button>
-      <button id="noBtn">Nahi 😜</button>
-    </div>
-  </div>
+function moveButton(e) {
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  
+  // Screen margins calculate karna
+  const padding = 20;
+  const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+  const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+  
+  const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+  const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+  
+  noBtn.style.position = 'fixed';
+  noBtn.style.left = randomX + 'px';
+  noBtn.style.top = randomY + 'px';
+  noBtn.style.zIndex = '9999';
+}
 
-  <script>
-    const noBtn = document.getElementById('noBtn');
-    const yesBtn = document.getElementById('yesBtn');
-    const mainCard = document.getElementById('mainCard');
-
-    function moveButton(e) {
-      if (e) e.preventDefault();
-      
-      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 40);
-      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 40);
-      
-      noBtn.style.position = 'fixed';
-      noBtn.style.left = `${Math.max(20, x)}px`;
-      noBtn.style.top = `${Math.max(20, y)}px`;
-    }
-
-    // Touch and Hover events for better response
-    noBtn.addEventListener('touchstart', moveButton);
-    noBtn.addEventListener('mouseover', moveButton);
-    noBtn.addEventListener('click', moveButton);
-
-    yesBtn.addEventListener('click', () => {
-      mainCard.innerHTML = "<h1>Yaaay! 🎉❤️</h1><p>Mera favourite decision! Jaldi milte hain! ✨</p>";
-    });
-  </script>
-
-</body>
-</html>
+// Mobile touch events
+noBtn.addEventListener('touchstart', moveButton, { passive: false });
+noBtn.addEventListener('pointerdown', moveButton);
+noBtn.addEventListener('mouseover', moveButton);
