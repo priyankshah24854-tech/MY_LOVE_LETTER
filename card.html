@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Just For You ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background: linear-gradient(120deg,#ff9a9e,#fad0c4);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family: 'Segoe UI', sans-serif;
+  color:#fff;
+  text-align:center;
+}
+
+.card{
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  padding:30px;
+  border-radius:20px;
+  max-width:320px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1{
+  font-size:1.6rem;
+  animation: fade 1.5s;
+}
+
+p{
+  font-size:1.05rem;
+  line-height:1.6;
+  animation: fade 1.5s;
+}
+
+button{
+  margin-top:20px;
+  padding:12px 25px;
+  border:none;
+  border-radius:25px;
+  font-size:1rem;
+  background:#fff;
+  color:#ff6f91;
+  cursor:pointer;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+@keyframes fade{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1 id="text">Hey… 🌷</h1>
+  <p id="sub">Ek chhota sa surprise hai</p>
+  <button id="btn">Open</button>
+
+  <audio id="song">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<script>
+let step = 0;
+const text = document.getElementById("text");
+const sub = document.getElementById("sub");
+const btn = document.getElementById("btn");
+const song = document.getElementById("song");
+
+btn.onclick = () => {
+  step++;
+
+  if(step === 1){
+    text.innerText = "Sach bolu…";
+    sub.innerText = "Tu meri life ka sabse sukoon wala hissa hai 🤍";
+  }
+  else if(step === 2){
+    text.innerText = "Jab bhi tu yaad aati hai";
+    sub.innerText = "sab kuch thoda better lagne lagta hai 🎶";
+    song.play();
+  }
+  else if(step === 3){
+    text.innerHTML = "I LOVE YOU ❤️";
+    sub.innerText = "Bas itna hi kehna tha.";
+    btn.style.display="none";
+  }
+}
+</script>
+
+</body>
+</html>
